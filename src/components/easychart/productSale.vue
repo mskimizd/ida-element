@@ -58,13 +58,13 @@ export default {
         if (i == -1) {
           gt = d.goodstitle;
         } else {
-          gt = d.goodstitle + "-" + i;
+          gt = d.goodstitle + "-" + (i - 1);
         }
         columns.push(gt);
         for (var m in d.data) {
           var ri = monthtmp[m];
           rows[ri][gt] = parseFloat(d.data[m][this.dimensionKey+"Sum"]);
-          rows[ri]["总计"] += parseFloat(d.data[m]["monthSaleSum"]);
+          rows[ri]["总计"] += parseFloat(d.data[m][this.dimensionKey+"Sum"]);
         }
       }
       for (var i in rows) {
@@ -77,8 +77,8 @@ export default {
         }
       }
       columns.push("总计");
-      //console.log(columns);
-      //console.log(rows);
+      // console.log(columns);
+      // console.log(rows);
       this.chartData = {
         columns: columns,
         rows: rows

@@ -132,8 +132,8 @@ export default {
           response => {
             response.json().then(res => {
               if (res.code == 200) {
-                console.log(new Date());
-                console.log(res);
+                //(new Date());
+                //console.log(res);
                 var allFinished = true;
                 for (var d of res.data) {
                   if (d.upStatus == 1) {
