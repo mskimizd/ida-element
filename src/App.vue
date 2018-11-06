@@ -2,12 +2,20 @@
   <div id="app">
     <!-- <transition name='el-zoom-in-center'>  -->
       <router-view></router-view> 
-    <!--  </transition> -->
+     <!-- </transition> -->
   </div>
 </template>
 
 <script>
 export default {
+  created:function(){
+    var loading = document.getElementById("initLoading");
+    loading.classList.add("animated");
+    loading.classList.add("fadeOut");
+    // loading.style.display = "none";
+    loading.style.zIndex = -1;
+    // console.log(loading);
+  },
   methods: {
     startHacking () {
       this.$notify({
@@ -29,11 +37,6 @@ export default {
   // height:100vh;
   // overflow: hidden;
   /* text-align: center; */
-}
-
-body{
-  margin:0;
-  padding:0;
 }
 
 .el-notification{

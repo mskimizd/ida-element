@@ -96,7 +96,12 @@
 
 <style lang="less">
 .el-menu-item i{
+  color:#eee;
   font-size:16px;
+}
+
+.el-submenu__title i {
+  color:#eee;
 }
 
 </style>

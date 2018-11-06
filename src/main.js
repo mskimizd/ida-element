@@ -19,12 +19,9 @@ import VCharts from 'v-charts'
 // import Register from './views/register.vue'
 // import Result from './views/result.vue'
 
-import $ from 'jquery'
-
 // Vue.use(Vuex)
 
 import store from "~/store/index.js";
-
 
 Vue.use(ElementUI)
 // Vue.use(VueRouter)

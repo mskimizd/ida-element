@@ -49,7 +49,7 @@ module.exports = (options = {}) => ({
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
+      names:  ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
@@ -57,7 +57,8 @@ module.exports = (options = {}) => ({
   ],
   resolve: {
     alias: {
-      '~': resolve(__dirname, 'src')
+      '~': resolve(__dirname, 'src'),
+      'static': resolve(__dirname, 'static')
     },
     extensions: ['.js', '.vue', '.json', '.css']
   },
