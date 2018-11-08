@@ -10,14 +10,16 @@ export const RouterMap = [
         path: '',
         component: Layout,
         redirect: 'dashboard',
-        name:'root',
+        // name:'root',
         children: [
             {
                 path: 'dashboard',
                 component: () => import('~/views/dashboard'),
                 name: 'dashboard',
-                icon:'el-icon-fa-dashboard',
-                cname:'首页'
+                meta: {
+                    cname: '首页',
+                    icon:'el-icon-fa-dashboard',
+                },
             }
         ]
     },
@@ -25,16 +27,18 @@ export const RouterMap = [
         path: '/industry',
         component: Layout,
         redirect: '/industry/overview',
-        name:'industry',
-        cname: '全品类分析',
+        // name:'industry',
+        // cname: '全品类分析',
         single:true,
         children: [
             {
                 path: 'overview',
                 component: () => import('~/views/analysis/industry'),
-                cname: '全品类分析',
                 name: 'industry-overview',
-                icon:'el-icon-fa-industry',
+                meta: {
+                    cname: '全品类分析',
+                    icon:'el-icon-fa-industry',
+                },                
             }
         ]
     },
@@ -43,23 +47,29 @@ export const RouterMap = [
         component: Layout,
         redirect: '/competitor/overview',
         name:'competitor',
-        cname: "竞品分析",
-        icon:'el-icon-fa-cubes',
+        meta: {
+            cname: '竞品分析',
+            icon:'el-icon-fa-cubes',
+        },
         children: [
             {
                 path: 'overview',
                 component: () => import('~/views/analysis/competitor'),
-                cname: '竞品总览',
                 name: 'competitor-overview',
-                icon:'el-icon-fa-line-chart',
+                meta: {
+                    cname: '竞品总览',
+                    icon:'el-icon-fa-line-chart',
+                },                
             },
             {
                 path: 'comp/:param',
                 component: () => import('~/views/analysis/comp'),
-                cname: 'dynamic',
-                name: 'dynamic',
-                icon:'el-icon-fa-cube',
                 dynamic:true,
+                name: 'dynamic',
+                meta: {
+                    cname: '竞品',
+                    icon:'el-icon-fa-cube',
+                },                
             },            
             // {
             //     path: 'babycare',
@@ -108,25 +118,31 @@ export const RouterMap = [
     {
         path: '/out',
         component: Layout,
-        // redirect: '/out/data',
+        redirect: '/out/jd',
         name:'out',
-        cname: "出库数据",
+        meta: {
+            cname: "出库数据",
+            icon:'el-icon-fa-cubes',
+        },       
         // single:true,
-        icon:'el-icon-fa-cubes',
         children: [
             {
                 path: 'jd',
                 component: () => import('~/views/analysis/out'),
-                cname: '京东',
-                icon:'el-icon-fa-cube',
                 name: 'out-jd',
+                meta: {
+                    cname: '京东',
+                    icon:'el-icon-fa-cube',
+                },                
             },
             {
                 path: 'tb',
                 component: () => import('~/views/analysis/out'),
-                cname: '淘宝',
-                icon:'el-icon-fa-cube',
                 name: 'out-tb',
+                meta: {
+                    cname: '淘宝',
+                    icon:'el-icon-fa-cube',
+                },                 
             }                       
         ]
     },    
@@ -135,22 +151,28 @@ export const RouterMap = [
         component: Layout,
         redirect: '/system/data',
         name:'system',
-        cname: "系统管理",
+        meta: {
+            cname: "系统管理",
+            icon:'el-icon-fa-cogs'
+        },
         // single:true,
-        icon:'el-icon-fa-cogs',
         children: [
             {
                 path: 'data',
                 component: () => import('~/views/data/management'),
-                cname: '数据管理',
-                icon:'el-icon-fa-database',
+                meta: {
+                    cname: '数据管理',
+                    icon:'el-icon-fa-database',
+                },
                 name: 'system-data',
             },
             {
                 path: 'comp',
                 component: () => import('~/views/system/compset'),
-                cname: '竞品管理',
-                icon:'el-icon-fa-eye',
+                meta: {
+                    cname: '竞品管理',
+                    icon:'el-icon-fa-eye',
+                },
                 name: 'system-comp',
             }            
         ]

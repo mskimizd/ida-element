@@ -2,8 +2,8 @@
   <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in levelList" v-if="item.name" :key="item.path">
-        <span v-if="item.redirect==='noredirect'||index==levelList.length-1" class="no-redirect">{{ item.name }}</span>
-        <router-link v-else :to="item.redirect||item.path">{{ item.name }}</router-link>
+        <span v-if="item.redirect==='noredirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.cname }}</span>
+        <router-link v-else :to="item.redirect||item.path">{{ item.meta.cname }}</router-link>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -29,6 +29,7 @@ export default {
     getBreadcrumb() {
       let matched = this.$route.matched.filter(item => item.name)
 
+      // console.log(matched);
       // console.log(matched);
 
       // const first = matched[0]

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <el-card class="box-card">
+      <el-card class="box-card" >
         <div style="display:flex;align-items: center;justify-content: space-between; color: #888;">
           <div style="font-size: 24px;font-weight: bold;">
             <span>{{ compName.toUpperCase() }} </span>

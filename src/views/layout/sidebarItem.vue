@@ -2,14 +2,14 @@
   <div v-if="!item.hidden&&item.children">
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)">
       <el-menu-item :index="resolvePath(onlyOneChild.path)">
-        <i :class="onlyOneChild.icon"></i>
-        <span slot="title">{{onlyOneChild.cname}}</span>
+        <i :class="onlyOneChild.meta.icon"></i>
+        <span slot="title">{{onlyOneChild.meta.cname}}</span>
       </el-menu-item>
     </template>
     <el-submenu v-else :index="item.name||item.path">
       <template slot="title">
-        <i :class="item.icon"></i>
-        <span>{{item.cname}}</span>
+        <i :class="item.meta.icon"></i>
+        <span>{{item.meta.cname}}</span>
       </template>
 
       <template v-for="child in item.children" v-if="!child.hidden">
@@ -17,12 +17,12 @@
         />
 
         <el-menu-item v-else-if="!child.dynamic" :index="resolvePath(child.path)" :key="child.name">
-          <i :class="child.icon"></i>
-          <span slot="title">{{child.cname}}</span>
+          <i :class="child.meta.icon"></i>
+          <span slot="title">{{child.meta.cname}}</span>
         </el-menu-item>
         <template v-else-if="child.dynamic">
           <el-menu-item v-for="dm in dynamicMenus" :key="dm.upSrcId" :index="resolvePathDynamic(child.path, dm.upSrcKey)">
-            <i :class="child.icon"></i>
+            <i :class="child.meta.icon"></i>
             <span  slot="title">{{dm.upSrcName}}</span>
           </el-menu-item>
         </template>

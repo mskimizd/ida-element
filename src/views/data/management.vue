@@ -8,9 +8,9 @@
             <el-table :data="files" stripe>
                 <el-table-column type="index" width="50">
                 </el-table-column>
-                <el-table-column prop="upRealname" label="文件名" width="220">
+                <el-table-column prop="upRealname" label="文件名" width="260">
                 </el-table-column>
-                <el-table-column prop="upSrcName" label="数据类型" width="100">
+                <el-table-column prop="upSrcName" label="数据类型" width="120">
                 </el-table-column>
                 <el-table-column prop="upTimestamp" label="上传时间" width="160">
                 </el-table-column>
@@ -35,6 +35,13 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <el-pagination style="margin-top: 20px;text-align: center;"
+              background
+              layout="prev, pager, next"
+              @current-change="handleCurrentChange"
+              :currentPage.sync="curPage"
+              :total="total">
+            </el-pagination>
         </el-card>
     </div>
 </template>
@@ -49,12 +56,14 @@ export default {
   data() {
     return {
       files: [],
+      total:0,
+      curPage:1,
       timerTmp: null,
       timmerCount: 0
     };
   },
   mounted: function() {
-    this.getAllFiles();
+    this.getAllFiles(1);
   },
   watch: {
     timmerCount: function(val) {
@@ -65,13 +74,14 @@ export default {
     }
   },
   methods: {
-    getAllFiles: function() {
-      this.$http.post(Config.backend+"/files/getUploaded", {}).then(
+    getAllFiles: function(page) {
+      this.$http.post(Config.backend+"/files/getUploaded", {page:page}).then(
         response => {
           // console.log(response);
           response.json().then(res => {
             if (res.code == 200) {
-              this.files = res.data;
+              this.files = res.data.rows;
+              this.total = res.data.total;
               this.startPolling();
               // console.log(this.files);
             }
@@ -174,6 +184,10 @@ export default {
           this.getStatus(upIdList);
         }, 5000);
       }
+    },
+    handleCurrentChange(val){
+      this.getAllFiles(val);
+      // console.log(`当前页: ${val}`);
     }
   },
   components: {
