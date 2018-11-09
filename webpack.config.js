@@ -49,7 +49,7 @@ module.exports = (options = {}) => ({
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      names:  ['vendor', 'manifest']
+      names: ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
@@ -57,17 +57,16 @@ module.exports = (options = {}) => ({
   ],
   resolve: {
     alias: {
-      '~': resolve(__dirname, 'src'),
-      'static': resolve(__dirname, 'static')
+      '~': resolve(__dirname, 'src')
     },
     extensions: ['.js', '.vue', '.json', '.css']
   },
   devServer: {
-    host: '192.168.1.12',
+    host: 'localhost',
     port: 8083,
     proxy: {
       '/api/': {
-        target: 'http://192.168.1.12:3000',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

@@ -1,6 +1,6 @@
 <template>
     <div style="display:flex;">
-        <uploader v-on:update-filelist="getAllFiles" style="position:fixed;" />
+        <uploader v-on:update-filelist="getAllFiles(1)" style="position:fixed;" />
         <el-card class="box-card" style="margin-left:380px;flex: 1;">
             <div slot="header" class="clearfix">
                 <span>数据列表</span>
