@@ -23,11 +23,13 @@
         {{ selectedPie  }} 每月 {{ dimension }} 一览图
       </div>
     </div>
-    <ve-line height="600px" :data="chartData2" :extend="chartExtend2" :settings="chartSettings2"></ve-line>
+    <ve-line height="600px" :data="chartData2" :extend="chartExtend2" ></ve-line>
   </div>
 </template>
 
 <script>
+import myutil from "~/utils/common.js";
+
 export default {
   props: {
     classdata: {
@@ -124,6 +126,16 @@ export default {
     },
     chartExtend2: function() {
       return {
+        tooltip : {
+            // trigger: 'item',
+            formatter: (value ,index) =>  {
+              var item = value[0];
+              var str = item.name;
+              var val = myutil.numberProcess(item.value[1]);
+              str = str + " <br /> " + item.seriesName + ": " + val;
+              return str;
+            }
+        },        
         series: {
           type: "line",
           smooth: false,
@@ -143,7 +155,6 @@ export default {
     var self = this;
     this.chartEvents = {
       click: function(e) {
-        // console.log(e);
         // self.name = e.name;
         if(e.name === self.selectedPie){
           self.selectedPie = "全品类";
@@ -152,20 +163,34 @@ export default {
           self.selectedPieColor = e.color;
           self.selectedPie = e.name;
         }
-
-        // console.log(e.name);
+      },
+      legendselectchanged: function(){
+        // console.log(self.selectedPie);
+          self.$refs.chart.echarts.dispatchAction({
+            type: "pieUnSelect",
+            seriesIndex: 0,
+            name: self.selectedPie
+          }); 
+          // self.selectedPie = "全品类";
+          // self.selectedPieColor = "#19d4ae";                   
       }
     };
     return {
       legendVisable: true,
       chartExtend: {
-        title: {
-          // text: "品类地图"
-        },
         grid: {
           top: 180,
           right: 500
         },
+        tooltip : {
+            trigger: 'item',
+            formatter: (item ,index) =>  {
+              var str = item.name;
+              var val = myutil.numberProcess(item.value);
+              str = str + " <br /> " + val + " , " +item.percent + "%";
+              return str;
+            }
+        },        
         legend: {
           type: "scroll",
           orient: "vertical",
@@ -178,17 +203,22 @@ export default {
         }
       },
       chartSettings: {
-        dataType: "KMB",
+        // dataType: "KMB",
         selectedMode: "single",
         radius: 200,
         offsetY: 280,
         label: {
-          formatter: "{b}: {d}%"
+          formatter: (item ,index) =>  {
+            var str = item.name;
+            var val = myutil.numberProcess(item.value);
+            str = str + " :  " + val + " , " +item.percent + "%";
+            return str;
+          }
         }
       },
-      chartSettings2: {
-        yAxisType: ["KMB"]
-      },
+      // chartSettings2: {
+      //   yAxisType: ["KMB"]
+      // },
 
       dimension: "销量",
       selectedPie: "全品类",
