@@ -1,6 +1,8 @@
+import moment from 'moment'
+
 var utils = {};
 
-var numberProcess = (inNum)=>{
+var numberFormatter = (inNum)=>{
     try{
         let outputNum = parseFloat(inNum);
         if(outputNum > 100000000){
@@ -14,6 +16,16 @@ var numberProcess = (inNum)=>{
     }
 }
 
-utils.numberProcess = numberProcess;
+var monthFormatter = (inDate)=>{
+    try{
+        return moment(inDate+"01").year()+"年"+moment(inDate+"01").month()+"月";
+    }
+    catch(err){
+        return inDate;
+    }
+}
+
+utils.numberFormatter = numberFormatter;
+utils.monthFormatter = monthFormatter;
 
 export default utils;

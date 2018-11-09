@@ -131,11 +131,25 @@ export default {
             formatter: (value ,index) =>  {
               var item = value[0];
               var str = item.name;
-              var val = myutil.numberProcess(item.value[1]);
-              str = str + " <br /> " + item.seriesName + ": " + val;
+              var val = myutil.numberFormatter(item.value[1]);
+              str = myutil.monthFormatter(str) + " <br /> " + item.seriesName + ": " + val;
               return str;
             }
-        },        
+        },  
+        yAxis: {
+          axisLabel:{
+            formatter: (value ,index) =>  {
+              return myutil.numberFormatter(value);
+            }
+          }
+        },
+        xAxis: {
+          axisLabel:{
+            formatter: (value ,index) =>  {
+              return myutil.monthFormatter(value);
+            }
+          }
+        },                      
         series: {
           type: "line",
           smooth: false,
@@ -186,7 +200,7 @@ export default {
             trigger: 'item',
             formatter: (item ,index) =>  {
               var str = item.name;
-              var val = myutil.numberProcess(item.value);
+              var val = myutil.numberFormatter(item.value);
               str = str + " <br /> " + val + " , " +item.percent + "%";
               return str;
             }
@@ -208,9 +222,10 @@ export default {
         radius: 200,
         offsetY: 280,
         label: {
+          // formatter: '{b}: {d}%',
           formatter: (item ,index) =>  {
             var str = item.name;
-            var val = myutil.numberProcess(item.value);
+            var val = myutil.numberFormatter(item.value);
             str = str + " :  " + val + " , " +item.percent + "%";
             return str;
           }
