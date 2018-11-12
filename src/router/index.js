@@ -137,7 +137,7 @@ export const RouterMap = [
             },
             {
                 path: 'tb',
-                component: () => import('~/views/analysis/out'),
+                component: () => import('~/views/dashboard'),
                 name: 'out-tb',
                 meta: {
                     cname: '淘宝',
@@ -145,7 +145,7 @@ export const RouterMap = [
                 },                 
             }                       
         ]
-    },    
+    },
     {
         path: '/system',
         component: Layout,

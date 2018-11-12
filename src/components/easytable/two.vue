@@ -48,7 +48,7 @@
       </el-table-column>
       <el-table-column fixed :prop="fields[1].key" :label="fields[1].name" width="120">
       </el-table-column>
-      <el-table-column :key="month" v-for="month in months" :label="month" width="120">
+      <el-table-column :key="month" v-for="month in months" :label="month | monthFormat" width="120">
         <el-table-column label="月销售" width="120">
           <template slot-scope="scope">
             <span style="margin-left: 10px">{{ scope.row.data | fetchValue(month,"monthSaleSum") }}</span>
@@ -62,12 +62,12 @@
       </el-table-column>
       <el-table-column prop="monthSaleTotal" label="月销售汇总" width="150">
         <template slot-scope="scope">
-          <span style="margin-left: 10px">{{ scope.row.monthSaleTotal.toFixed(1) }}</span>
+          <span style="margin-left: 10px">{{ scope.row.monthSaleTotal.toFixed(1) | numberFormat }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="saleRoomTotal" label="销售额汇总" width="120">
         <template slot-scope="scope">
-          <span style="margin-left: 10px">{{ scope.row.saleRoomTotal.toFixed(1) }}</span>
+          <span style="margin-left: 10px">{{ scope.row.saleRoomTotal.toFixed(1) | numberFormat }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -75,6 +75,8 @@
 </template>
 
 <script>
+import myutil from "~/utils/common.js";
+
 export default {
   props: {
     rawdata: {
@@ -145,6 +147,12 @@ export default {
   created() {},
   mounted() {},
   filters: {
+    numberFormat:(value)=>{
+      return myutil.numberFormatter(value);
+    },
+    monthFormat:(value)=>{
+      return myutil.monthFormatter(value);
+    },        
     fetchValue: function(value, month, key) {
       var rtn = "";
       if (
@@ -152,6 +160,7 @@ export default {
         typeof value[month][key] !== "undefined"
       ) {
         rtn = value[month][key];
+        rtn = myutil.numberFormatter(rtn);
       }
       return rtn;
     }
@@ -215,6 +224,8 @@ export default {
             sums[index] = "N/A";
           }
         }
+
+        sums[index] = myutil.numberFormatter(sums[index]);
       });
       return sums;
     },

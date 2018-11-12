@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import myutil from "~/utils/common.js";
+
 export default {
   props: {
     monthdata: {
@@ -34,7 +36,6 @@ export default {
       return {
         axisSite: { right: ["saleRoomSum"] },
         yAxisName: ["销量", "销售额"],
-        yAxisType: ["KMB", "KMB"],
         labelMap: {
           monthSaleSum: "月销量",
           saleRoomSum: "月销售额"
@@ -46,23 +47,35 @@ export default {
     return {
       legendVisable: true,
       chartExtend: {
-        // title: {
-        //   text: "每月销量与销售额一览图"
-        // },
         grid: {
           top: 80
         },
-        // legend: {
-        //   type: "scroll",
-        //   orient: "vertical",
-        //   right: 0,
-        //   top: 60,
-        //   bottom: 60
-        // },
-        // series: {
-        //   type: "bar",
-        //   barMaxWidth: 40
-        // }
+        tooltip : {
+            // trigger: 'item',
+            formatter: (value ,index) =>  {
+              var str = myutil.monthFormatter(value[0].name) + " <br /> " ;
+              for(var v of value){
+                str += v.seriesName + ": ";
+                str += myutil.numberFormatter(v.value[1]) + " <br /> " ;
+
+              }
+              return str;
+            }
+        },        
+        yAxis: {
+          axisLabel:{
+            formatter: (value ,index) =>  {
+              return myutil.numberFormatter(value);
+            }
+          }
+        },
+        xAxis: {
+          axisLabel:{
+            formatter: (value ,index) =>  {
+              return myutil.monthFormatter(value);
+            }
+          }
+        },
         series: {
           type: "line",
           smooth: false,

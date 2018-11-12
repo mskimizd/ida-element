@@ -18,7 +18,7 @@ var numberFormatter = (inNum)=>{
 
 var monthFormatter = (inDate)=>{
     try{
-        return moment(inDate+"01").year()+"年"+moment(inDate+"01").month()+"月";
+        return moment(inDate+"01").year()+"年"+ (moment(inDate+"01").month()+1)+"月";
     }
     catch(err){
         return inDate;

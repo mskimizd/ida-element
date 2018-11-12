@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import myutil from "~/utils/common.js";
+
 export default {
   props: {
     rawdata: {
@@ -72,13 +74,35 @@ export default {
           right: 0,
           top: 60,
           bottom: 60
+        },     
+        tooltip : {
+            // trigger: 'item',
+            formatter: (value ,index) =>  {
+              var str = myutil.monthFormatter(value[0].name.split("_")[0]) + " <br /> " ;
+              for(var v of value){
+                str += v.seriesName + ": ";
+                if(v.value !== undefined){
+                  str += myutil.numberFormatter(v.value) + " <br /> " ;            
+                }else{
+                  str += "0" + " <br /> " ;
+                }
+              }
+              return str;
+            }
+        },            
+        yAxis: {
+          axisLabel:{
+            formatter: (value ,index) =>  {
+              return myutil.numberFormatter(value);
+            }
+          }
         },
         xAxis:{
             axisLabel:{
                 formatter: function (value, index) {
                     var month = value.split("_")[0];
                     var promotion = value.split("_")[1];
-                    return promotion+"\r\n \r\n "+month;
+                    return promotion+"\r\n \r\n "+ myutil.monthFormatter(month);
                 }                
             }
         },

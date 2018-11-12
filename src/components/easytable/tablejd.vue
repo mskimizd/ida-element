@@ -3,17 +3,20 @@
 
         <el-table border :span-method="arraySpanMethod" :data="rawdata" :summary-method="getSummaries" show-summary style="width: 100%">
             <el-table-column fixed prop="month" label="月度" width="150">
+                <template slot-scope="scope">
+                <span >{{ scope.row.month| monthFormat }}</span>
+                </template>                
             </el-table-column>
             <el-table-column fixed prop="promotion" label="促销信息" width="120">
             </el-table-column>
             <el-table-column :key="cls" v-for="cls in goodclass" :label="cls" width="120">
                 <template slot-scope="scope">
-                    <span >{{ scope.row.data[cls] }}</span>
+                    <span >{{ scope.row.data[cls] | numberFormat }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="saleRoomTotal" label="总计" width="120">
                 <template slot-scope="scope">
-                <span >{{ scope.row.saleRoomTotal.toFixed(2) }}</span>
+                <span >{{ scope.row.saleRoomTotal.toFixed(2) | numberFormat }}</span>
                 </template>            
             </el-table-column>        
         </el-table>
@@ -21,6 +24,8 @@
 </template>
 
 <script>
+import myutil from "~/utils/common.js";
+
 export default {
   props: {
     rawdata: {
@@ -62,6 +67,14 @@ export default {
   },
   created() {},
   mounted() {},
+  filters: {
+    monthFormat:(value)=>{
+      return myutil.monthFormatter(value);
+    },     
+    numberFormat:(value)=>{
+      return myutil.numberFormatter(value);
+    }  
+  },
   methods: {
       getSummaries(param) {
         const { columns, data } = param;

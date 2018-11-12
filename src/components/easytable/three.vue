@@ -5,7 +5,7 @@
       </el-table-column>
       <el-table-column fixed :prop="fields[1].key" :label="fields[1].name" width="120">
       </el-table-column>
-      <el-table-column :key="month" v-for="month in months" :label="month" width="120">
+      <el-table-column :key="month" v-for="month in months" :label="month | monthFormat" width="120">
         <el-table-column label="商品现价" width="120">
           <template slot-scope="scope">
             <span style="margin-left: 10px">{{ scope.row.data | fetchValue(month,"priceAvg") }}</span>
@@ -124,6 +124,9 @@ export default {
     numberFormat:(value)=>{
       return myutil.numberFormatter(value);
     },
+    monthFormat:(value)=>{
+      return myutil.monthFormatter(value);
+    },     
     fetchValue: function(value, month, key) {
       var rtn = "";
       if (

@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import myutil from "~/utils/common.js";
+
 export default {
   props: {
     rawdata: {
@@ -108,7 +110,7 @@ export default {
       // console.log(products);
       return {
         stack: { 产品: products },
-        yAxisType: ["KMB"],
+        // yAxisType: ["KMB"],
         showLine: ["总计"]
         // max: [1]
       };
@@ -119,12 +121,38 @@ export default {
       chartData: [],
       legendVisable: true,
       chartExtend: {
-        // title: {
-        //   text: "TOP10商品各月销量占比一览图"
-        // },
         grid: {
           right: 480
         },
+        tooltip : {
+            // trigger: 'item',
+            formatter: (value ,index) =>  {
+              var str = myutil.monthFormatter(value[0].name) + " <br /> " ;
+              for(var v of value){
+                str += v.seriesName + ": ";
+                if(v.value !== undefined){
+                  str += myutil.numberFormatter(v.value) + " <br /> " ;            
+                }else{
+                  str += "0" + " <br /> " ;
+                }
+              }
+              return str;
+            }
+        },        
+        yAxis: {
+          axisLabel:{
+            formatter: (value ,index) =>  {
+              return myutil.numberFormatter(value);
+            }
+          }
+        },
+        xAxis: {
+          axisLabel:{
+            formatter: (value ,index) =>  {
+              return myutil.monthFormatter(value);
+            }
+          }
+        },        
         legend: {
           type: "scroll",
           orient: "vertical",

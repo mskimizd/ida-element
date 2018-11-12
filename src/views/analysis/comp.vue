@@ -7,9 +7,9 @@
           </div>
           <div style="line-height: 36px;">
             <span style="margin-right:10px;">总销量</span>
-            <span style="color: #303133;margin-right:10px;font-weight: bold;">{{ statsData.monthSaleSum }}</span>
+            <span style="color: #303133;margin-right:10px;font-weight: bold;">{{ statsData.monthSaleSum | numberFormat }}</span>
             <span style="margin-right:10px;">总销售额</span>
-            <span style="color: #303133;margin-right:10px;font-weight: bold;">{{ statsData.saleRoomSum.toFixed(1) }}</span>
+            <span style="color: #303133;margin-right:10px;font-weight: bold;">{{ statsData.saleRoomSum.toFixed(1) | numberFormat }}</span>
           </div>
           <div>
             <dropdown-select @filter-change="filterMonth" label="月份筛选" :options="monthsList"></dropdown-select>
@@ -56,6 +56,8 @@ import monthSale from "~/components/easychart/monthSale";
 import dropdownSelect from "~/components/dropdown-select";
 
 import Config from "~/config";
+
+import myutil from "~/utils/common.js";
 
 export default {
   data() {
@@ -109,6 +111,11 @@ export default {
   mounted: function() {
     this.init();
   },
+  filters: {
+    numberFormat:(value)=>{
+      return myutil.numberFormatter(value);
+    },  
+  },  
   methods: {
     init() {
       this.compName = this.$route.params.param;
