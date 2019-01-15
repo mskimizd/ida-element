@@ -20,9 +20,19 @@ export default {
       var rows = [];
       var columns = [];
       if(this.monthdata.length>0){
+        for(var md of this.monthdata){
+          var comps = Object.keys(md);
+          for(var comp of comps){
+            if(columns.indexOf(comp) == -1){
+              columns.push(comp);
+            }
+          }
+        }        
         rows = this.monthdata;
-        columns =  Object.keys(rows[0]);
+      //   columns =  Object.keys(rows[0]);
       }
+      console.log(columns);
+      console.log(rows);
       return {
         columns: columns,
         rows: rows
