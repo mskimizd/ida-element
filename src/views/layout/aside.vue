@@ -2,7 +2,7 @@
   <el-scrollbar style="height:100%;width:200px;min-width:200px;">
   <div class="logo">
     <span class="image">
-      <img src="static/logo.png" />
+      <img src="../../assets/image/logo.png" />
     </span>
     <span style="letter-spacing: 2px;">数据分析</span>
   </div>

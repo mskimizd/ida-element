@@ -38,7 +38,7 @@ module.exports = (options = {}) => ({
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 10000
+            limit: 10000,
           }
         }]
       },
@@ -52,7 +52,8 @@ module.exports = (options = {}) => ({
       names: ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      favicon: './favicon.ico'
     })
   ],
   resolve: {
