@@ -153,13 +153,13 @@ export default {
         this.tableData.tableName = "goodSale";
         this.tableData.fields = [
           {
-            key: "goodslink",
-            name: "商品链接"
-          },
-          {
             key: "goodstitle",
             name: "商品标题"
-          }
+          },
+          {
+            key: "goodslink",
+            name: "商品链接"
+          }          
         ];
         this.getTableData();
       }

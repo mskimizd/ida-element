@@ -35,10 +35,17 @@ module.exports = (options = {}) => ({
       },
       {
         test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-        use: [{
-          loader: 'url-loader',
+        use: [
+        //   {
+        //   loader: 'url-loader',
+        //   options: {
+        //     limit: 10000
+        //   }
+        // },
+        {
+          loader: 'file-loader',
           options: {
-            limit: 10000,
+            name:'images/[name].[ext]?[hash]'
           }
         }]
       },

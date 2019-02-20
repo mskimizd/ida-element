@@ -44,7 +44,7 @@
     <el-table :data="rawdata" :summary-method="getSummaries" show-summary style="width: 100%">
       <el-table-column fixed type="index" width="50">
       </el-table-column>
-      <el-table-column fixed :prop="fields[0].key" :label="fields[0].name" width="150">
+      <el-table-column fixed :prop="fields[0].key" :label="fields[0].name" width="200">
       </el-table-column>
       <el-table-column fixed :prop="fields[1].key" :label="fields[1].name" width="120">
       </el-table-column>
