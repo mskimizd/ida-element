@@ -37,10 +37,13 @@ export default {
   },
   watch: {
     options(nv, ov) {
-      console.log(nv);
-      for(var v of nv){
-         this.checked.push(v); 
+      if(nv.length>0){
+        this.checked = [];
+        for(var v of nv){
+          this.checked.push(v); 
+        }
       }
+
     }
   },
   data() {

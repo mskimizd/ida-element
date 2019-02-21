@@ -14,7 +14,7 @@
     <el-card class="box-card" style="margin-top:20px;">
       <class-pie :classdata="rawdata"></class-pie>
     </el-card>
-    <el-card class="box-card" style="margin-top:20px;">
+    <el-card class="box-card" style="margin-top:20px;" v-if="tableShow"> 
       <div slot="header" class="clearfix">
         <span>品类地图表格</span>
       </div>
@@ -71,6 +71,11 @@ export default {
   mounted: function() {
     this.init();
   },
+  computed: {
+    tableShow(){
+      return this.$store.state.tableShow
+    }
+  },    
   methods: {
     init() {
       this.getClassData(this.cond);

@@ -2,8 +2,10 @@
   <div>
       <el-card class="box-card" >
         <div style="display:flex;align-items: center;justify-content: space-between; color: #888;">
-          <div style="font-size: 24px;font-weight: bold;">
-            <span>{{ compName.toUpperCase() }} </span>
+          <div style="font-size: 24px;font-weight: bold; height:60px;"  >
+            <!-- <span>{{ compName.toUpperCase() }} </span> -->
+            <img v-if="compName=='drbrowns'" style="height: 100%;background:#1481BD;" v-bind:src="compImages[compName]" />
+            <img v-else style="height: 100%;" v-bind:src="compImages[compName]"  />
           </div>
           <div style="line-height: 36px;">
             <span style="margin-right:10px;">总销量</span>
@@ -27,7 +29,7 @@
       <!-- <el-card class="box-card" style="margin-top:20px;">
         <product-salex @change-dimension="changeDimension" :rawdata="goodSaleGraph" :months="months"></product-salex>
       </el-card> -->
-      <el-card class="box-card" style="margin-top:20px;">
+      <el-card class="box-card" style="margin-top:20px;" v-if="tableShow">
         <el-tabs v-model="activeTab" @tab-click="handleClick">
           <el-tab-pane label="平台数据" name="platform">
             <!-- <easy-table v-on:limit="limit3" v-on:sort="sort3" :rawdata="rawdata3" :ydata="shoptypes" :months="months3" :fields="fields3"></easy-table> -->
@@ -59,10 +61,29 @@ import Config from "~/config";
 
 import myutil from "~/utils/common.js";
 
+import image_babycare from "~/assets/image/logos/babycare.jpg";
+import image_bobo from "~/assets/image/logos/bobo.png";
+import image_nuk from "~/assets/image/logos/nuk.jpg";
+import image_pigeon from "~/assets/image/logos/pigeon.png";
+import image_drbrowns from "~/assets/image/logos/drbrowns.png";
+import image_avent from "~/assets/image/logos/avent.jpg";
+import image_kubbaby from "~/assets/image/logos/kub.png";
+import image_comotomo from "~/assets/image/logos/comotomo.jpg";
+
 export default {
   data() {
     return {
       compName: "",
+      compImages:{
+        "babycare":image_babycare,
+        "bobo":image_bobo,
+        "nuk":image_nuk,
+        "pigeon":image_pigeon,
+        "drbrowns":image_drbrowns,
+        "avent":image_avent,
+        "kubbaby":image_kubbaby,
+        "comotomo":image_comotomo,
+      },
       compHasData:false,
       statsData: {
         monthSaleSum: 0,
@@ -108,6 +129,11 @@ export default {
       }
     }
   },
+  computed: {
+    tableShow(){
+      return this.$store.state.tableShow
+    }
+  },     
   mounted: function() {
     this.init();
   },
@@ -180,6 +206,7 @@ export default {
       this.getMonthSaleGraph();
       this.getGoodSaleGraph("monthSaleTotal");
       this.getTableData();
+
     },
     changeDimension(dkey) {
       this.getGoodSaleGraph(dkey);

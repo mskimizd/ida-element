@@ -4,9 +4,10 @@
     <!-- <el-aside> -->
       <me-aside />
     <!-- </el-aside>   -->
+    <me-gadget />
     <el-container class="right-container">
-      <el-header class="tmp-topbar">
-        <breadcrumb class="breadcrumb-container"/>
+      <el-header style="z-index:99">
+       <me-header />
       </el-header>
       <el-main class="app-main">
         <keep-alive >
@@ -19,7 +20,8 @@
 
 <script>
   import aside from './aside.vue';
-  import breadcrumb from '~/components/breadcrumb';
+  import gadget from './gadget.vue';
+  import header from './header.vue';
 
   export default {
     data() {
@@ -37,7 +39,8 @@
     },
     components: {
       'me-aside':aside,
-      'breadcrumb': breadcrumb
+      'me-gadget':gadget,
+      'me-header':header
     },    
   }
 </script>
@@ -54,16 +57,6 @@
     overflow-x: hidden;
   } 
 
-  .tmp-topbar{
-    background: #fff;
-    border-bottom: 1px solid #d8dce5;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.12), 0 0 3px 0 rgba(0,0,0,.04);
-    height: 34px;
-    width: 100%;
-    height: 50px;
-  }
-
-
-  
+    
 
 </style>

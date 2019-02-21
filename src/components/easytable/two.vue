@@ -42,11 +42,11 @@
       </div>
     </div>
     <el-table :data="rawdata" :summary-method="getSummaries" show-summary style="width: 100%">
-      <el-table-column fixed type="index" width="50">
+      <el-table-column type="index" width="50">
       </el-table-column>
-      <el-table-column fixed :prop="fields[0].key" :label="fields[0].name" width="200">
+      <el-table-column :prop="fields[0].key" :label="fields[0].name" width="200">
       </el-table-column>
-      <el-table-column fixed :prop="fields[1].key" :label="fields[1].name" width="120">
+      <el-table-column :prop="fields[1].key" :label="fields[1].name" width="120">
       </el-table-column>
       <el-table-column :key="month" v-for="month in months" :label="month | monthFormat" width="120">
         <el-table-column label="月销售" width="120">
@@ -177,6 +177,9 @@ export default {
         } else if (index === 1) {
           sums[index] = "";
           return;
+        } else if (index === 2) {
+          sums[index] = "";
+          return;
         } else if (column.label == "月销售" || column.label == "销售额") {
           // 从第4列开始，每两列为一个月份
           // console.log(index);
@@ -201,12 +204,11 @@ export default {
                 } else {
                   return prev;
                 }
-              }, 0)
-              .toFixed(1);
+              }, 0).toFixed(1);
           } else {
             sums[index] = "N/A";
           }
-          // console.log(sums[index]);
+
         } else {
           var values = data.map(item => item[column.property]);
           if (!values.every(value => isNaN(value))) {
@@ -218,8 +220,7 @@ export default {
                 } else {
                   return prev;
                 }
-              }, 0)
-              .toFixed(1);
+              }, 0).toFixed(1);
           } else {
             sums[index] = "N/A";
           }
