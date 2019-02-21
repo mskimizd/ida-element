@@ -95,13 +95,25 @@
 </script>
 
 <style lang="less">
-.el-menu-item i{
-  color:#eee;
-  font-size:16px;
-}
+.el-menu-item{
+   
+  } 
 
 .el-submenu__title i {
-  color:#eee;
+  color:#b8c7ce;
 }
+
+.el-submenu{
+  &.is-opened{
+    .el-menu-item{
+      background:#2c3b41 !important;
+      &:hover{
+        background-color: #222d32 !important;
+      }
+    }
+  }
+}
+
+
 
 </style>

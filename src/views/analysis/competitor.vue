@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-card class="box-card">
+        <el-card class="box-card" shadow="never">
             <div style="display:flex;align-items: center;justify-content: space-between; color: #888;">
                 <div style="font-size: 24px;font-weight: bold;">
                     <span> 竞品总览 </span>
@@ -11,7 +11,7 @@
             </div>
 
         </el-card>
-        <el-card class="box-card" style="margin-top:20px;">
+        <el-card class="box-card" shadow="never" style="margin-top:20px;">
             <comp-sale :monthdata="monthdata"></comp-sale>
         </el-card>
     </div>

@@ -57,6 +57,10 @@
     overflow-x: hidden;
   } 
 
+  .app-main{
+    background: #f4f4f4;
+  }
+
     
 
 </style>

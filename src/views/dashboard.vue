@@ -2,7 +2,7 @@
     <div>
       <el-row :gutter="20">
         <el-col :span="8">
-          <el-card class="box-card" :body-style="{background:'#409EFF'}">
+          <el-card class="box-card" shadow="never" :body-style="{background:'#409EFF'}">
             <div class="dashboard-card">
               <span>数据总量</span>
               <span>{{ total }}</span>
@@ -10,7 +10,7 @@
           </el-card>
         </el-col>
         <el-col :span="8">
-          <el-card class="box-card"  :body-style="{background:'#67C23A'}">  
+          <el-card class="box-card" shadow="never"  :body-style="{background:'#67C23A'}">  
             <div class="dashboard-card">
               <span>平台</span>
               <span>{{ platformNum }}</span>            
@@ -18,7 +18,7 @@
           </el-card>
         </el-col>
         <el-col :span="8">
-          <el-card class="box-card" :body-style="{background:'#EB9E05'}">
+          <el-card class="box-card" shadow="never" :body-style="{background:'#EB9E05'}">
             <div class="dashboard-card">
               <span>竞品</span>
               <span>{{ compsNum }}</span>              
@@ -26,9 +26,9 @@
           </el-card>
         </el-col>
       </el-row> 
-      <el-row style="margin-top:20px;" :gutter="20"> 
+      <el-row style="margin-top:20px;"  :gutter="20"> 
         <el-col :span="16">
-          <el-card class="box-card" >
+          <el-card class="box-card" shadow="never" >
             <div class="chart-title">
               每月数据量走势图
             </div>        
@@ -36,7 +36,7 @@
           </el-card>
         </el-col>
         <el-col :span="8">
-          <el-card class="box-card"  >  
+          <el-card class="box-card" shadow="never" >  
             <ul class="dashboard-list">
               <li v-for="com in comps" v-bind:key="com.upSrcKey">
                 <div>

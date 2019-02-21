@@ -76,7 +76,7 @@
         position: fixed;
         right: 0;
         z-index: 98;
-        background: #304156;
+        background: #222d32;
         padding: 80px 12px 60px 12px;
         color:#fff;
     }
@@ -95,7 +95,6 @@
     .conf-one{
       .conf-title{
         padding: 0 12px;
-        border-left: 4px solid #425375;
       }
       .conf-panel{
         padding:12px 24px;

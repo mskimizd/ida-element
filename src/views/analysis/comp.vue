@@ -1,6 +1,6 @@
 <template>
   <div>
-      <el-card class="box-card" >
+      <el-card class="box-card" shadow="never">
         <div style="display:flex;align-items: center;justify-content: space-between; color: #888;">
           <div style="font-size: 24px;font-weight: bold; height:60px;"  >
             <!-- <span>{{ compName.toUpperCase() }} </span> -->
@@ -20,16 +20,16 @@
 
       </el-card>
      <div v-if="compHasData">
-      <el-card class="box-card" style="margin-top:20px;">
+      <el-card class="box-card" style="margin-top:20px;" shadow="never">
         <month-sale :monthdata="monthSaleGraph"></month-sale>
       </el-card>
-      <el-card class="box-card" style="margin-top:20px;">
+      <el-card class="box-card" style="margin-top:20px;" shadow="never">
         <product-sale @change-dimension="changeDimension" :rawdata="goodSaleGraph" :months="months"></product-sale>
       </el-card>
       <!-- <el-card class="box-card" style="margin-top:20px;">
         <product-salex @change-dimension="changeDimension" :rawdata="goodSaleGraph" :months="months"></product-salex>
       </el-card> -->
-      <el-card class="box-card" style="margin-top:20px;" v-if="tableShow">
+      <el-card class="box-card" style="margin-top:20px;" shadow="never" v-if="tableShow">
         <el-tabs v-model="activeTab" @tab-click="handleClick">
           <el-tab-pane label="平台数据" name="platform">
             <!-- <easy-table v-on:limit="limit3" v-on:sort="sort3" :rawdata="rawdata3" :ydata="shoptypes" :months="months3" :fields="fields3"></easy-table> -->

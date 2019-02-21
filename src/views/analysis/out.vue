@@ -1,6 +1,6 @@
 <template>
   <div >
-      <el-card class="box-card">
+      <el-card class="box-card" shadow="never">
         <div style="display:flex;align-items: center;justify-content: space-between; color: #888;">
           <div style="font-size: 24px;font-weight: bold;">
             <span>{{ outname.toUpperCase() }} </span>
@@ -25,15 +25,15 @@
         </div>
       </el-card>
 
-      <el-card class="box-card" style="margin-top:20px;">
+      <el-card class="box-card" style="margin-top:20px;" shadow="never">
         <good-sale :rawdata="GraphGoodData" :goodcode="GraphGoodCode"></good-sale>
       </el-card>
 
-      <el-card class="box-card" style="margin-top:20px;">
+      <el-card class="box-card" style="margin-top:20px;" shadow="never">
         <class-sale :rawdata="GraphClassData" :goodclass="GraphGoodClass"></class-sale>
       </el-card>
 
-      <el-card class="box-card" style="margin-top:20px;">
+      <el-card class="box-card" style="margin-top:20px;" shadow="never">
         <el-tabs v-model="activeTab" @tab-click="handleClick">
           <el-tab-pane label="品类数据" name="classdata" >
           </el-tab-pane>

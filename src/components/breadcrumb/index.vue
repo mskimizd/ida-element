@@ -46,11 +46,21 @@ export default {
   .app-breadcrumb.el-breadcrumb {
     display: inline-block;
     font-size: 14px;
-    line-height: 50px;
+    line-height: 60px;
     margin-left: 10px;
     .no-redirect {
       color: #97a8be;
       cursor: text;
     }
   }
+.el-breadcrumb__inner a, .el-breadcrumb__inner.is-link {
+    color: #fff;
+    font-weight:normal;
+    &:hover{
+      color: #fff;
+    }
+}  
+.app-breadcrumb.el-breadcrumb .no-redirect {
+    color: #eee;
+}
 </style>
