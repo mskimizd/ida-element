@@ -182,7 +182,7 @@ export const RouterMap = [
         name:'login',
         cname: "登陆",        
         hidden: true,
-        component: () => import('~/views/data/management'),
+        component: () => import('~/views/layout/login'),
     },
     {
         path: '/register',
