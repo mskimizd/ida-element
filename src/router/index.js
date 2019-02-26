@@ -8,6 +8,10 @@ import Layout from '~/views/layout/layout'
 export const RouterMap = [
     {
         path: '',
+        redirect: 'login',
+    },
+    {
+        path: '/main',
         component: Layout,
         redirect: 'dashboard',
         // name:'root',

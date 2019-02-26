@@ -21,6 +21,10 @@
                   <el-button type="primary" style="width:100%;" @click="login('form')">登录</el-button>
                 </el-form-item>
               </el-form>
+              <div style="color: #bbb;width: 240px;margin: 0 auto;padding: 10px;    text-align: center;">
+                <span>测试账号：admin</span>
+                <span>密码：admin</span>
+              </div>
             </el-card>
         </div>
       </div>
@@ -59,7 +63,16 @@
               username:this.form.username,
               password:this.form.password
             }
-            this.$router.push('/dashboard');
+            if(this.form.username=="admin"&&this.form.password=="admin"){
+              this.$router.push('/main/dashboard');
+            }else{
+              this.$message({
+                showClose: true,
+                message: '用户名密码错误，请重新输入。',
+                type: 'warning'
+              }); 
+              this.$refs[formName].resetFields();             
+            }
             // this.$http.post(vConfig.backend_path+'/login',reqData
             // ).then(response => {
             //     response.json().then(res=>{
@@ -101,12 +114,12 @@
     .login-wrapper{
       position:relative;
       margin:0 auto;
-      width:360px;
+      width:380px;
       height:100%;
       .login-block{
         position:absolute;
         top:50%;
-        width: 360px;
+        width: 380px;
         height: 400px;
         margin-top:-200px;
         // margin: 0 auto;

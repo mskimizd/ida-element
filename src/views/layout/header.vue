@@ -1,8 +1,14 @@
 <template>
     <div class="page-header">
         <breadcrumb class="breadcrumb-container"/>
-        <div class="configuration" v-on:click="collapseGadget">
-            <i class="el-icon-fa-cogs"></i>
+        <div style="display:flex;">
+            <div class="login-user" >
+                <img style="width: 28px;height: 28px;border-radius: 50%;" src="../../assets/image/avatar.png" class="user-image" alt="User Image">
+                <span style="padding:0 0 0 10px;color:#fff;">admin</span>
+            </div>            
+            <div class="configuration" v-on:click="collapseGadget">
+                <i class="el-icon-fa-cogs"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -42,6 +48,16 @@
     margin: 0 -20px;
     padding-left:20px;
     height: 60px;
+    .login-user{
+        display:flex;
+        align-items:center;
+        padding:0 20px;
+        &:hover,
+        &:focus{
+            background: #222d32;
+            cursor: pointer;
+        }        
+    }
     .configuration{
         height:60px;
         line-height: 60px;
