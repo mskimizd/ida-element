@@ -29,13 +29,13 @@ Vue.use(VueResource)
 
 // Vue.use(VueClipboard)
 
-Vue.use(VCharts)
-
+Vue.use(VCharts);
 
 Vue.http.options.emulateJSON = true;
 Vue.http.options.headers = {
   'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 };
+Vue.http.options.xhr = { "withCredentials": true };
 
 // const router = new VueRouter({
 // //   mode: 'history',

@@ -36,6 +36,7 @@
 <script>
 
   import bg from '~/components/bg.vue'
+  import Config from "~/config";
 
   export default {
     data() {
@@ -63,36 +64,46 @@
               username:this.form.username,
               password:this.form.password
             }
-            if(this.form.username=="admin"&&this.form.password=="admin"){
-              this.$router.push('/main/dashboard');
-            }else{
-              this.$message({
-                showClose: true,
-                message: '用户名密码错误，请重新输入。',
-                type: 'warning'
-              }); 
-              this.$refs[formName].resetFields();             
-            }
-            // this.$http.post(vConfig.backend_path+'/login',reqData
-            // ).then(response => {
-            //     response.json().then(res=>{
-            //         if(res.rntCode == 200){
-            //             vCookie.setCookie("username",this.form.username,7);
-            //             vCookie.setCookie("token",res.data.token,7);
-            //             // this.$router.push('/main/casebatch');
-            //             $('.el-form').fadeOut(500);
-            //             $('.login-block').addClass('form-success');
-            //             let that = this;
-            //             setTimeout(function(){
-            //                 that.$router.push('/main/casebatch');
-            //             },1200)
-            //         }else{
-            //             console.log('error server!!');
-            //         }
-            //     })                
-            // }, response => {
-            //     console.log('error post!!');
-            // });
+            // if(this.form.username=="admin"&&this.form.password=="admin"){
+            //   this.$router.push('/main/dashboard');
+            // }else{
+            //   this.$message({
+            //     showClose: true,
+            //     message: '用户名密码错误，请重新输入。',
+            //     type: 'warning'
+            //   }); 
+            //   this.$refs[formName].resetFields();             
+            // }
+            this.$http.post(Config.backend+'/users/login',reqData
+            ).then(response => {
+                response.json().then(res=>{
+                  if(res.status == "success"){
+                    this.$router.push('/main/dashboard');
+                  }else if(res.status == "failure"){
+                    this.$message({
+                      showClose: true,
+                      message: '用户名密码错误，请重新输入。',
+                      type: 'warning'
+                    }); 
+                    this.$refs[formName].resetFields();    
+                  }
+                    // if(res.rntCode == 200){
+                    //     vCookie.setCookie("username",this.form.username,7);
+                    //     vCookie.setCookie("token",res.data.token,7);
+                    //     // this.$router.push('/main/casebatch');
+                    //     $('.el-form').fadeOut(500);
+                    //     $('.login-block').addClass('form-success');
+                    //     let that = this;
+                    //     setTimeout(function(){
+                    //         that.$router.push('/main/casebatch');
+                    //     },1200)
+                    // }else{
+                    //     console.log('error server!!');
+                    // }
+                })                
+            }, response => {
+                console.log('error post!!');
+            });
           } else {
             console.log('error submit!!');
             return false;
