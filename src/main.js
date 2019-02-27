@@ -35,7 +35,10 @@ Vue.http.options.emulateJSON = true;
 Vue.http.options.headers = {
   'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 };
-Vue.http.options.xhr = { "withCredentials": true };
+Vue.http.interceptors.push((request, next) => {
+    request.credentials = true
+    next()
+})
 
 // const router = new VueRouter({
 // //   mode: 'history',

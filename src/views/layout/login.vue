@@ -76,6 +76,7 @@
             // }
             this.$http.post(Config.backend+'/users/login',reqData
             ).then(response => {
+              console.log(111111111111111);
                 response.json().then(res=>{
                   if(res.status == "success"){
                     this.$router.push('/main/dashboard');
