@@ -23,7 +23,7 @@
               </el-form>
               <div style="color: #bbb;width: 240px;margin: 0 auto;padding: 10px;    text-align: center;">
                 <span>测试账号：admin</span>
-                <span>密码：admin</span>
+                <span>密码：123456</span>
               </div>
             </el-card>
         </div>
@@ -37,6 +37,7 @@
 
   import bg from '~/components/bg.vue'
   import Config from "~/config";
+  import md5 from 'md5';
 
   export default {
     data() {
@@ -62,7 +63,7 @@
             // alert('submit!');
             let reqData = {
               username:this.form.username,
-              password:this.form.password
+              password:md5(this.form.password)
             }
             // if(this.form.username=="admin"&&this.form.password=="admin"){
             //   this.$router.push('/main/dashboard');
@@ -76,7 +77,6 @@
             // }
             this.$http.post(Config.backend+'/users/login',reqData
             ).then(response => {
-              console.log(111111111111111);
                 response.json().then(res=>{
                   if(res.status == "success"){
                     this.$router.push('/main/dashboard');
