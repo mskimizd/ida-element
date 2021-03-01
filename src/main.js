@@ -31,14 +31,14 @@ Vue.use(VueResource)
 
 Vue.use(VCharts);
 
-Vue.http.options.emulateJSON = true;
-Vue.http.options.headers = {
-  'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-};
-Vue.http.interceptors.push((request, next) => {
-    request.credentials = true
-    next()
-})
+// Vue.http.options.emulateJSON = true;
+// Vue.http.options.headers = {
+//   'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+// };
+// Vue.http.interceptors.push((request, next) => {
+//     request.credentials = true
+//     next()
+// })
 
 // const router = new VueRouter({
 // //   mode: 'history',
